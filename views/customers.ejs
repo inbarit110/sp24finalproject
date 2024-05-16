@@ -1,0 +1,88 @@
+<%- include("_header") -%>
+<h1>Find Customers</h1><br>
+<h2>Total number of records in the database: <%= totRecs.length %></h2>
+
+
+<form action="/customers" method="POST" onsubmit="return validateForm()">
+  <table>
+    <tr>
+        <td><label for="cusId">ID</label>:</td>
+        <td><input type="number" name="cusId" id="cusId" /></td>
+        <td>(equals)</td>
+    </tr>
+    <tr>
+        <td><label for="cusFname">First Name</label>:</td>
+        <td><input type="text" name="cusFname" id="cusFname" /></td>
+        <td>(begins with)</td>
+    </tr>
+    <tr>
+      <td><label for="cusLname">Last Name</label>:</td>
+      <td><input type="text" name="cusLname" id="cusLname" /></td>
+      <td>(begins with)</td>
+  </tr>
+  <tr>
+    <td><label for="cusState">State</label>:</td>
+    <td><input type="text" id="cusState" name="cusState" maxlength="2" pattern="[A-Za-z]{2}" /></td>
+    <td>(equals)</td>
+</tr>
+    <tr>
+        <td><label for="cusSalesPrev">Previous Years Sales</label>:</td>
+        <td><input type="text" id="cusSalesPrev" name="cusSalesPrev" pattern="[0-9]*"/></td>
+        <td>(greater than or equal)</td>
+    </tr>
+    <tr>
+      <td><label for="cusSalesYTD">Sales YTD</label>:</td>
+      <td><input type="text" id="cusSalesYTD" name="cusSalesYTD" pattern="[0-9]*" /></td>
+      <td>(starts with)</td>
+  </tr>
+    <tr>
+        <td class="align-middle" span="2">
+            <input type="submit" value="Find" />
+            <input type="reset" value="Reset" />
+        </td>
+    </tr>
+</table>
+</form>
+
+
+
+  <div>
+    <h2>Number of Records Found: <%= totRecs.length  %></h2>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>State</th>
+          <th>Sale YTD</th>
+          <th>Prev Years Sales</th>
+          <th class="d-print-none">
+            <a class="btn btn-sm btn-success" href="/create">Create Customer</a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (const cus of totRecs) { %>
+          <tr>
+            <td><%= cus.cusid %></td>
+            <td><%= cus.cusfname %></td>
+            <td><%= cus.cuslname %></td>
+            <td><%= cus.cusstate %></td>
+            <td><%= cus.cussalesytd %></td>
+            <td><%= cus.cussalesprev %></td>
+            <td class="d-print-none">
+              <a class="btn btn-sm btn-warning" href="/edit/<%= cus.cusid %>">Edit</a>
+              <a class="btn btn-sm btn-danger" href="/delete/<%= cus.cusid %>">Delete</a>
+            </td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+
+
+
+<div id="output"></div>
+
+<%- include("_footer") -%>

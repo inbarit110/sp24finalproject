@@ -1,0 +1,24 @@
+<div>
+
+  <form action="/delete" method="POST">
+    <label for="id">ID</label>
+    <input type="text" id="id" name="id" pattern="[0-9]*" value="<%= model.cusId %>" required>
+    <br>
+    <label for="firstName">First Name</label>
+    <input type="text" id="firstName" name="firstName" value="<%= model.cusFname %>" required>
+    <br>
+    <label for="lastName">Last Name</label>
+    <input type="text" id="lastName" name="lastName" value="<%= model.cusLname %>" required>
+    <br>
+    <label for="state">State</label>
+    <input type="text" id="state" name="state" maxlength="2" pattern="[A-Za-z]{2}" value="<%= model.cusState %>">
+    <br>
+    <label for="salesYTD">Sales YTD</label>
+    <input type="text" id="salesYTD" name="salesYTD" pattern="[0-9]*" value="<%= model.cusSalesPrev %>">
+    <br>
+    <label for="previousSales">Previous Years Sales</label>
+    <input type="text" id="previousSales" name="previousSales" pattern="[0-9]*" value="<%= model.cusSalesYTD %>">
+    <br>
+  </form>
+  <div id="notification" style="display: none;">Customer Deleted Successfully !</div>
+</div>
